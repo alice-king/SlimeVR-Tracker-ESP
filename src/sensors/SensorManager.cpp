@@ -124,18 +124,30 @@ namespace SlimeVR
 
         void SensorManager::update()
         {
-            // Gather IMU data
-            m_Sensor1->motionLoop();
-            m_Sensor2->motionLoop();
+            Sensor* sensors[2] = { m_Sensor1, m_Sensor2 };
 
-            if (!ServerConnection::isConnected())
-            {
-                return;
+            // Gather IMU data
+            for (auto sensor : sensors) {
+                sensor->motionLoop();
             }
 
             // Send updates
-            m_Sensor1->sendData();
-            m_Sensor2->sendData();
+            if (!ServerConnection::isConnected()) return;
+            
+            bool shouldSend = false;
+            for (auto sensor : sensors) {
+                if (sensor->hasNewData()) {
+                    shouldSend = true;
+                    break;
+                }
+            }
+            if (!shouldSend) return;
+            
+            DataTransfer::beginBundle();
+            for (auto sensor : sensors) {
+                sensor->sendData();
+            }
+            DataTransfer::endBundle();
         }
     }
 }

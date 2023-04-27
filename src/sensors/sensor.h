@@ -57,8 +57,7 @@ public:
     virtual void printDebugTemperatureCalibrationState();
     virtual void resetTemperatureCalibrationState();
     virtual void saveTemperatureCalibration();
-    bool isWorking()
-    {
+    bool isWorking() {
         return working;
     };
     uint8_t getSensorId() {
@@ -67,8 +66,11 @@ public:
     uint8_t getSensorType() {
         return sensorType;
     };
-    Quat& getQuaternion() {
+    const Quat& getQuaternion() {
         return quaternion;
+    };
+    bool hasNewData() {
+        return newData;
     };
 
     bool hadData = false;
