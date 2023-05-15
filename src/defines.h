@@ -28,7 +28,7 @@
 // Set parameters of IMU and board used
 #define IMU IMU_BMI160
 #define SECOND_IMU IMU_BMI160
-#define BOARD BOARD_SLIMEVTUBER
+#define BOARD BOARD_CUSTOM
 #define IMU_ROTATION DEG_270
 #define SECOND_IMU_ROTATION DEG_270
 
@@ -36,7 +36,7 @@
 //   BAT_EXTERNAL for ADC pin, 
 //   BAT_INTERNAL for internal - can detect only low battery, 
 //   BAT_MCP3021 for external ADC connected over I2C
-#define BATTERY_MONITOR BAT_EXTERNAL
+#define BATTERY_MONITOR BAT_INTERNAL
 
 // BAT_EXTERNAL definition override
 // D1 Mini boards with ESP8266 have internal resistors. For these boards you only have to adjust BATTERY_SHIELD_RESISTANCE.
@@ -60,7 +60,7 @@
 //     - true for pull down to GND on high
 
 // Board-specific configurations
-#if BOARD == BOARD_SLIMEVTUBER
+#if BOARD == BOARD_CUSTOM
   #define PIN_IMU_SDA 4
   #define PIN_IMU_SCL 5
   #define PIN_IMU_INT 14
