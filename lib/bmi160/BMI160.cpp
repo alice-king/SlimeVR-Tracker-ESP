@@ -148,7 +148,7 @@ uint8_t BMI160::getDeviceID() {
  */
 bool BMI160::testConnection()
 {
-    return (BMI160_CHIP_ID == getDeviceID());
+    return (BMI160_CHIP_ID&0xFC == getDeviceID()&0xFC);
 }
 
 /** Set gyroscope output data rate.
