@@ -20,10 +20,10 @@ jobs:
           pip install platformio
 
       - name: Run builds
-        run: python ./ci/build.py
+        run: platformio run -e esp12e
 
       - name: Upload binaries
         uses: actions/upload-artifact@v2
         with:
           name: binaries
-          path: ./build/*.bin
+          path: .pio/build/esp12e/firmware.bin
